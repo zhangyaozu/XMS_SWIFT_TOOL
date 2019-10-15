@@ -40,4 +40,15 @@ import Foundation
             vc.present(self, animated: true, completion: completion)
         }
     }
+    
+    /// 自定义控件的背景色   ---- iOS13黑暗模式的时候，可能会用到
+    @objc public func changeBgColor(bgColor: UIColor) {
+        let FirstSubview = self.view.subviews.first
+        let AlertContentView = FirstSubview?.subviews.first
+        for subview in (AlertContentView?.subviews)! {
+            subview.backgroundColor = bgColor
+            subview.layer.cornerRadius = 10
+            subview.alpha = 1
+        }
+    }
 }
