@@ -47,28 +47,18 @@ import Foundation
     /// - Parameter duration: 动画执行时间
     /// - Parameter isRepeat: 是否重复
     @objc func shakeAnimationDelay_XMS(delay: CGFloat = 0.0, duration: CGFloat, isRepeat: Bool) {
-        self.layer.removeAllAnimations() // 移除动画
-        let animation = CAKeyframeAnimation(keyPath: "transform")
-        animation.duration = CFTimeInterval(duration) // 动画执行时间
-        animation.beginTime = CACurrentMediaTime() + CFTimeInterval(delay)
+        let animati = CAKeyframeAnimation(keyPath: "transform.rotation")
+        // rotation 旋转，需要添加弧度值
+        // 角度转弧度
+        animati.values = [angle2Radion_XMS(angle: -50), angle2Radion_XMS(angle: 50), angle2Radion_XMS(angle: -50)]
         if isRepeat {
-            animation.repeatCount = MAXFLOAT
-            animation.isRemovedOnCompletion = false
-            animation.fillMode = CAMediaTimingFillMode.forwards
-            animation.autoreverses = false
+            animati.repeatCount = MAXFLOAT
         } else {
-            animation.repeatCount = 0
+            animati.repeatCount = 0
         }
-        
-        let valueArr = NSMutableArray()
-        valueArr.append(NSValue.init(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0))) // 前两个参数控制大小
-        valueArr.append(NSValue.init(caTransform3D: CATransform3DMakeScale(1.2, 1.2, 1.0))) // 前两个参数控制大小
-        valueArr.append(NSValue.init(caTransform3D: CATransform3DMakeScale(0.9, 0.9, 1.0))) // 前两个参数控制大小
-        valueArr.append(NSValue.init(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0))) // 前两个参数控制大小
-        valueArr.append(NSValue.init(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0))) // 前两个参数控制大小
-        valueArr.append(NSValue.init(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0))) // 前两个参数控制大小
-        animation.values = valueArr as? [Any]
-        animation.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeInEaseOut)
-        self.layer.add(animation, forKey: "shakeAnimationDelay") // key是可以随便定义的
+        self.layer.add(animati, forKey: nil)
+    }
+    func angle2Radion_XMS(angle: Float) -> Float {
+        return angle / Float(180.0 * Double.pi)
     }
 }
