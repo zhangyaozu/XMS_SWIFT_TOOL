@@ -110,7 +110,7 @@ extension UIView {
     var x: CGFloat {
         set {
             var rect = self.frame;
-            rect.origin.x = x;
+            rect.origin.x = newValue;
             self.frame = rect;
         }
         
@@ -123,7 +123,7 @@ extension UIView {
     var y: CGFloat {
         set {
             var rect = self.frame;
-            rect.origin.y = y;
+            rect.origin.y = newValue;
             self.frame = rect;
         }
         
@@ -136,7 +136,7 @@ extension UIView {
     var width: CGFloat {
         set {
             var rect = self.frame;
-            rect.size.width = width;
+            rect.size.width = newValue;
             self.frame = rect;
         }
         
@@ -149,7 +149,7 @@ extension UIView {
     var height: CGFloat {
         set {
             var rect = self.frame;
-            rect.size.height = height;
+            rect.size.height = newValue;
             self.frame = rect;
         }
         
@@ -162,7 +162,7 @@ extension UIView {
     var origin: CGPoint {
         set {
             var rect = self.frame;
-            rect.origin = origin;
+            rect.origin = newValue;
             self.frame = rect;
         }
         
@@ -175,7 +175,7 @@ extension UIView {
     var size: CGSize {
         set {
             var rect = self.frame;
-            rect.size = size;
+            rect.size = newValue;
             self.frame = rect;
         }
         
@@ -188,7 +188,7 @@ extension UIView {
     var centerX: CGFloat {
         set {
             var center = self.center;
-            center.x = centerX;
+            center.x = newValue;
             self.center = center;
         }
         
@@ -201,7 +201,7 @@ extension UIView {
     var centerY: CGFloat {
         set {
             var center = self.center;
-            center.y = centerX;
+            center.y = newValue;
             self.center = center;
         }
         
@@ -214,7 +214,7 @@ extension UIView {
     var right: CGFloat {
         set {
             var rect = self.frame;
-            rect.origin.x = right - rect.size.width;
+            rect.origin.x = newValue - rect.size.width;
             self.frame = rect;
         }
         
@@ -227,7 +227,7 @@ extension UIView {
     var bottom: CGFloat {
         set {
             var rect = self.frame;
-            rect.origin.y = bottom - rect.size.height;
+            rect.origin.y = newValue - rect.size.height;
             self.frame = rect;
         }
         
@@ -239,7 +239,7 @@ extension UIView {
     // 左间距
     var leftSpacing: CGFloat {
         set {
-            self.x = leftSpacing;
+            self.x = newValue;
         }
         
         get {
@@ -250,7 +250,7 @@ extension UIView {
     // 右间距
     var rightSpacing: CGFloat {
         set {
-            self.width = (self.superview?.width)! - rightSpacing - self.x;
+            self.width = (self.superview?.width)! - newValue - self.x;
         }
         
         get {
@@ -261,7 +261,7 @@ extension UIView {
     // 上间距
     var topSpacing: CGFloat {
         set {
-            self.y = topSpacing;
+            self.y = newValue;
         }
         
         get {
@@ -272,7 +272,7 @@ extension UIView {
     // 下间距
     var bottomSpacing: CGFloat {
         set {
-            self.height = (self.superview?.height)! - bottomSpacing - self.y;
+            self.height = (self.superview?.height)! - newValue - self.y;
         }
         
         get {
